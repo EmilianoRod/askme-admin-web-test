@@ -1,11 +1,11 @@
-name: Super-Linter
+name: Jenkins Action
 # Run this workflow every time a new commit pushed to your repository
 on:
   pull_request:
     branches:
-      - main
+      - develop
     types: [closed]
-
+    
 jobs:
  build:
     name: Build
@@ -14,13 +14,8 @@ jobs:
     - name: trigger single Job
       uses: appleboy/jenkins-action@master
       with:
-        url: "http://ec2-54-189-150-153.us-west-2.compute.amazonaws.com:8080/"
+        url: "http://ec2-54-189-150-153.us-west-2.compute.amazonaws.com:8080"
         user: "effectus"
         token: ${{secrets.TOKEN}}
         job: "Askme UI Automation"
-      # Runs the Super-Linter action
-#       - name: Run Super-Linter
-#         uses: github/super-linter@v3
-#         env:
-#           DEFAULT_BRANCH: main
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
