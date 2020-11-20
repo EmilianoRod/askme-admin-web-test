@@ -1,25 +1,26 @@
 name: Super-Linter
-
 # Run this workflow every time a new commit pushed to your repository
-on: push
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 
 jobs:
-  # Set the job key. The key is displayed as the job name
-  # when a job name is not provided
-  super-lint:
-    # Name the Job
-    name: Lint code base
-    # Set the type of machine to run on
+ build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+    - name: trigger single Job
+      uses: appleboy/jenkins-action@master
+      with:
+        url: "http://ec2-54-189-150-153.us-west-2.compute.amazonaws.com:8080/"
+        user: "effectus"
+        token: ${{ secrets.TOKEN }}
+        job: "Askme UI Automation"
       # Runs the Super-Linter action
-      - name: Run Super-Linter
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Run Super-Linter
+#         uses: github/super-linter@v3
+#         env:
+#           DEFAULT_BRANCH: main
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
