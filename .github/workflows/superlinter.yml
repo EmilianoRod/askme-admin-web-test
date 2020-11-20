@@ -16,7 +16,8 @@ jobs:
       with:
         url: "http://ec2-54-189-150-153.us-west-2.compute.amazonaws.com:8080/"
         user: "effectus"
-        token: ${{ secrets.TOKEN }}
+        token: ${{'11a8110239140df4f6572423febd7fcd14
+'}}
         job: "Askme UI Automation"
       # Runs the Super-Linter action
 #       - name: Run Super-Linter
